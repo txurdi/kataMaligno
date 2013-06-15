@@ -15,17 +15,18 @@ class kataMaligno
         } else {
             //var_dump(strlen($clave));
             $res = $this->buscarExactos($clave);
-            if ($res=='') $res .= $this->buscarAproximados($clave);
+            $res .= $this->buscarAproximados($clave);
         }
         return $res;
     }
 
-    private function buscarExactos($clave) {
+    private function buscarExactos(&$clave) {
         $res ='';
         for ($i=0;$i<strlen($clave);$i++) {
             //var_dump($i);
             if ($clave[$i]==$this->secreta[$i]) {
                 $res .= '*';
+                $clave[$i] = '.';
             }
         }
         return $res;
