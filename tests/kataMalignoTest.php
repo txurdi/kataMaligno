@@ -2,20 +2,44 @@
 class kataMalignoTest extends \PHPUnit_Framework_TestCase
 {
     
-    function testSiCodigoSecretoDevuleve4ast()
+     /**
+     * @dataProvider bateria
+     */
+    function testPruebaClave($clave,$res)
     {
 	$kata = new kataMaligno('RAMV');
-        $this->assertEquals('****', $kata->compruebaClave('RAMV'));
+        $this->assertEquals($res, $kata->compruebaClave($clave));
     }
-
-    function testSi1EnPosicionDevuelve1ast()
+    
+    public function bateria()
     {
-	$kata = new kataMaligno('RAMV');
-        $this->assertEquals('*', $kata->compruebaClave('RNNN'));
+        return array(
+            array('RAMV','****'),	
+            array('RNNN','*'),	
+            array('RANN','**'),	
+            array('RAMN','***'),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+            //array('',''),	
+        );
     }
-    function testSi2EnPosicionDevuelve2ast()
-    {
-	$kata = new kataMaligno('RAMV');
-        $this->assertEquals('**', $kata->compruebaClave('RANN'));
-    }
+    
+    
+    
 }
