@@ -14,13 +14,36 @@ class kataMaligno
             $res = '****';
         } else {
             //var_dump(strlen($clave));
-            for ($i=0;$i<strlen($clave);$i++) {
-                //var_dump($i);
-                if ($clave[$i]==$this->secreta[$i]) {
-                    $res .= '*';
+            $res = $this->buscarExactos($clave);
+            if ($res=='') $res .= $this->buscarAproximados($clave);
+        }
+        return $res;
+    }
+
+    private function buscarExactos($clave) {
+        $res ='';
+        for ($i=0;$i<strlen($clave);$i++) {
+            //var_dump($i);
+            if ($clave[$i]==$this->secreta[$i]) {
+                $res .= '*';
+            }
+        }
+        return $res;
+    }
+    
+    private function buscarAproximados($clave) {
+        $res ='';
+        for ($i=0;$i<strlen($clave);$i++) {
+            for ($j=0;$j<strlen($clave);$j++) {
+            //var_dump($i);
+                if ($clave[$i]==$this->secreta[$j]) {
+                    $res .= 'X';
+                    break;
                 }
             }
         }
         return $res;
     }
+    
+    
 }

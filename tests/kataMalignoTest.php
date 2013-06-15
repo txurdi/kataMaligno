@@ -3,30 +3,56 @@ class kataMalignoTest extends \PHPUnit_Framework_TestCase
 {
     
      /**
-     * @dataProvider bateria
+     * @dataProvider bateria_cor
      */
-    function testPruebaClave($clave,$res)
+    function testPruebaPosicionCorrecta($clave,$res)
+    {
+	$kata = new kataMaligno('RAMV');
+        $this->assertEquals($res, $kata->compruebaClave($clave));
+    }
+     /**
+     * @dataProvider bateria_dif
+     */
+    function testPruebaPosicionDiferente($clave,$res)
     {
 	$kata = new kataMaligno('RAMV');
         $this->assertEquals($res, $kata->compruebaClave($clave));
     }
     
-    public function bateria()
+     /**
+     * @dataProvider bateria_compleja
+     */
+    function testPruebaMezcla($clave,$res)
+    {
+	$kata = new kataMaligno('RAMV');
+        $this->assertEquals($res, $kata->compruebaClave($clave));
+    }
+    
+    public function bateria_cor()
     {
         return array(
             array('RAMV','****'),	
             array('RNNN','*'),	
             array('RANN','**'),	
-            array('RAMN','***'),	
+            array('RAMN','***')	
+        );
+    }
+    public function bateria_dif()
+    {
+        return array(
+            array('NRNN','X'),	
+            array('NRAN','XX'),	
+            array('NRAM','XXX'),	
+            array('VRAM','XXXX'),	
             //array('',''),	
-            //array('',''),	
-            //array('',''),	
-            //array('',''),	
-            //array('',''),	
-            //array('',''),	
-            //array('',''),	
-            //array('',''),	
-            //array('',''),	
+        );
+    }
+    
+    //RAMV
+    public function bateria_compleja()
+    {
+        return array(
+            array('RNAN','*X'),	
             //array('',''),	
             //array('',''),	
             //array('',''),	
@@ -39,7 +65,5 @@ class kataMalignoTest extends \PHPUnit_Framework_TestCase
             //array('',''),	
         );
     }
-    
-    
-    
+
 }
