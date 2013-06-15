@@ -1,9 +1,16 @@
 <?php
 class kataMalignoTest extends \PHPUnit_Framework_TestCase
 {
-    function testPrueba()
+    
+    function testSiCodigoSecretoDevuleve4ast()
     {
-	$kata = new kataMaligno();
-        $this->assertEquals(1, $kata->prueba(), "Prueba para que de OK");
+	$kata = new kataMaligno('RAMV');
+        $this->assertEquals('****', $kata->compruebaClave('RAMV'));
+    }
+
+    function testSi1EnPosicionDevuelve1ast()
+    {
+	$kata = new kataMaligno('RAMV');
+        $this->assertEquals('*', $kata->compruebaClave('RNNN'));
     }
 }
