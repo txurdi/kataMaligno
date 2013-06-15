@@ -13,4 +13,9 @@ class kataMalignoTest extends \PHPUnit_Framework_TestCase
 	$kata = new kataMaligno('RAMV');
         $this->assertEquals('*', $kata->compruebaClave('RNNN'));
     }
+    function testSi2EnPosicionDevuelve2ast()
+    {
+	$kata = new kataMaligno('RAMV');
+        $this->assertEquals('**', $kata->compruebaClave('RANN'));
+    }
 }
